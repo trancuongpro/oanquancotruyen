@@ -23,10 +23,6 @@ function initStonePositions() {
 function toggleMusic() {
     const audio = document.getElementById('bg-music');
     const icon = document.getElementById('music-icon');
-    
-    // Luôn cố định âm lượng 20%
-    audio.volume = 0.2;
-
     if (game.musicPlaying) {
         audio.pause();
         icon.innerText = "🔇";
@@ -40,15 +36,9 @@ function toggleMusic() {
 function render() {
     game.board.forEach((count, i) => {
         const cell = document.getElementById(`cell-${i}`);
-        const isSelected = (game.selectedCell === i);
-        
+        const isSelected = cell.classList.contains('selected');
         cell.innerHTML = `<span class="stone-count">${count}</span><div class="stone-container" id="stones-${i}"></div>`;
-        
-        if (isSelected) {
-            cell.classList.add('selected');
-        } else {
-            cell.classList.remove('selected');
-        }
+        if (isSelected) cell.classList.add('selected');
 
         const container = document.getElementById(`stones-${i}`);
         const displayCount = Math.min(count, 30); 
@@ -111,16 +101,10 @@ function setupCellEvents() {
             const canP2 = (game.turn === 1 && game.mode === 'pvp' && id >= 1 && id <= 5);
 
             if ((canP1 || canP2) && game.board[id] > 0) {
-                if (game.selectedCell === id) {
-                    game.selectedCell = null;
-                    cell.classList.remove('selected');
-                    document.getElementById('direction-picker').classList.add('hidden');
-                } else {
-                    document.querySelectorAll('.cell').forEach(c => c.classList.remove('selected'));
-                    game.selectedCell = id;
-                    cell.classList.add('selected');
-                    document.getElementById('direction-picker').classList.remove('hidden');
-                }
+                document.querySelectorAll('.cell').forEach(c => c.classList.remove('selected'));
+                game.selectedCell = id;
+                cell.classList.add('selected');
+                document.getElementById('direction-picker').classList.remove('hidden');
             }
         };
         cell.addEventListener('click', handler);
@@ -132,11 +116,9 @@ document.getElementById('btn-left').onclick = () => handleDirection((game.select
 document.getElementById('btn-right').onclick = () => handleDirection((game.selectedCell >= 7) ? -1 : 1);
 
 async function handleDirection(dir) {
-    const startIdx = game.selectedCell;
-    game.selectedCell = null;
     document.querySelectorAll('.cell').forEach(c => c.classList.remove('selected'));
     document.getElementById('direction-picker').classList.add('hidden');
-    await executeMove(startIdx, dir);
+    await executeMove(game.selectedCell, dir);
 }
 
 async function executeMove(idx, dir) {
@@ -217,9 +199,7 @@ function startGame(mode) {
     initStonePositions();
     setupCellEvents();
     render();
-    
     const audio = document.getElementById('bg-music');
-    audio.volume = 0.3; 
     audio.play().then(() => {
         game.musicPlaying = true;
         document.getElementById('music-icon').innerText = "🔊";
