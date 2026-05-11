@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ô Ăn Quan - Tết Cổ Truyền</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body oncontextmenu="return false" onselectstart="return false">
+    <audio id="bg-music" loop>
+        <source src="gameoquan.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="game-wrapper">
+        <div class="menu-overlay" id="menu">
+            <div class="menu-content">
+                <h1 class="menu-title">Trò Chơi Ô Ăn Quan</h1>
+                <div class="menu-buttons">
+                    <button class="play-btn" onclick="startGame('pvp')">Người Chơi Với Khách</button>
+                    <button class="play-btn" onclick="startGame('pve')">Người Chơi Với Bot (AI)</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over-overlay" class="menu-overlay hidden">
+            <div class="victory-scroll">
+                <h1 id="victory-title">KẾT QUẢ TRÒ CHƠI</h1>
+                <div class="winner-display">
+                    <p id="winner-text"></p>
+                </div>
+                <button class="ok-btn" onclick="location.reload()">CHƠI VÁN MỚI</button>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="score-card p2-card">
+                <div class="player-info">
+                    <span class="p-icon">👤</span>
+                    <span id="label-p2" class="label">Đang chờ...</span>
+                </div>
+                <span id="score2" class="value">0</span>
+            </div>
+            
+            <div id="status-box">
+                <div id="status-text">CHỌN CHẾ ĐỘ</div>
+            </div>
+
+            <div class="score-card p1-card">
+                <div class="player-info">
+                    <span class="p-icon">👤</span>
+                    <span id="label-p1" class="label">Bạn</span>
+                </div>
+                <span id="score1" class="value">0</span>
+            </div>
+        </div>
+
+        <div class="board-container">
+            <div class="board" id="game-board">
+                <div class="cell quan-cell" id="cell-0"></div>
+                <div class="middle-rows">
+                    <div class="row" id="row-top">
+                        <div class="cell dan-cell" id="cell-1"></div>
+                        <div class="cell dan-cell" id="cell-2"></div>
+                        <div class="cell dan-cell" id="cell-3"></div>
+                        <div class="cell dan-cell" id="cell-4"></div>
+                        <div class="cell dan-cell" id="cell-5"></div>
+                    </div>
+                    <div class="row" id="row-bottom">
+                        <div class="cell dan-cell" id="cell-11"></div>
+                        <div class="cell dan-cell" id="cell-10"></div>
+                        <div class="cell dan-cell" id="cell-9"></div>
+                        <div class="cell dan-cell" id="cell-8"></div>
+                        <div class="cell dan-cell" id="cell-7"></div>
+                    </div>
+                </div>
+                <div class="cell quan-cell" id="cell-6"></div>
+            </div>
+
+            <div id="direction-picker" class="hidden">
+                <button id="btn-left">⬅️</button>
+                <button id="btn-right">➡️</button>
+            </div>
+        </div>
+
+        <div class="footer-controls">
+            <button class="reset-btn" onclick="location.reload()">Làm Mới Trò Chơi</button>
+            <div id="music-control" onclick="toggleMusic()">
+                <span id="music-icon">🔇</span>
+            </div>
+        </div>
+
+        <div class="signature-footer">
+            Thiết Kế Trần Cường - Zalo: 0907860662
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
