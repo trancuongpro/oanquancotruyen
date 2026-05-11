@@ -35,7 +35,7 @@ body {
     position: relative;
 }
 
-/* --- MENU --- */
+/* ================= MENU ================= */
 
 .menu-overlay {
     position: fixed;
@@ -108,7 +108,7 @@ body {
     line-height: 1.6;
 }
 
-/* --- HEADER --- */
+/* ================= HEADER ================= */
 
 .header {
     display: flex;
@@ -163,7 +163,7 @@ body {
     white-space: nowrap;
 }
 
-/* --- BOARD --- */
+/* ================= BOARD ================= */
 
 .board-container {
     position: relative;
@@ -250,7 +250,7 @@ body {
     pointer-events: none;
 }
 
-/* --- DIRECTION --- */
+/* ================= DIRECTION ================= */
 
 #direction-picker {
     position: absolute;
@@ -273,7 +273,7 @@ body {
     cursor: pointer;
 }
 
-/* --- FOOTER --- */
+/* ================= FOOTER ================= */
 
 .footer-controls {
     margin-top: 20px;
@@ -318,10 +318,14 @@ body {
 }
 
 /* ========================================================= */
-/* ================= MOBILE RESPONSIVE ===================== */
+/* ================= MOBILE 375x667 ======================== */
 /* ========================================================= */
 
 @media (max-width: 768px) {
+
+    body {
+        overflow: hidden;
+    }
 
     .game-wrapper {
         justify-content: flex-start;
@@ -330,11 +334,11 @@ body {
 
     .header {
         width: 100%;
-        padding: 0 10px;
-        gap: 6px;
-        transform: scale(0.72);
+        padding: 0 5px;
+        gap: 4px;
+        transform: scale(0.78);
         transform-origin: top center;
-        margin-bottom: -15px;
+        margin-bottom: -8px;
     }
 
     .score-card {
@@ -361,16 +365,17 @@ body {
     .board-container {
         width: 100%;
         overflow: visible;
-        margin-top: -10px;
+        margin-top: -8px;
     }
 
     .board {
-        transform: scale(0.5);
+        transform: scale(0.56);
+        transform-origin: center center;
     }
 
     .footer-controls {
         margin-top: -55px;
-        transform: scale(0.75);
+        transform: scale(0.78);
     }
 
     .signature-footer {
@@ -391,8 +396,8 @@ body {
     .menu-content,
     .victory-scroll {
         min-width: unset;
-        width: 95%;
-        padding: 25px;
+        width: 92%;
+        padding: 24px;
     }
 
     .menu-title,
@@ -402,8 +407,8 @@ body {
 
     .play-btn,
     .ok-btn {
-        font-size: 16px;
-        padding: 12px 18px;
+        font-size: 15px;
+        padding: 12px 16px;
     }
 
     #winner-text {
@@ -411,21 +416,21 @@ body {
     }
 }
 
-/* MOBILE NHỎ */
+/* ================= MOBILE NHỎ ================= */
 
-@media (max-width: 480px) {
+@media (max-width: 390px) {
 
     .board {
-        transform: scale(0.42);
+        transform: scale(0.52);
     }
 
     .header {
-        transform: scale(0.65);
-        margin-bottom: -25px;
+        transform: scale(0.74);
+        margin-bottom: -15px;
     }
 
     .footer-controls {
-        transform: scale(0.68);
-        margin-top: -75px;
+        transform: scale(0.74);
+        margin-top: -70px;
     }
 }
